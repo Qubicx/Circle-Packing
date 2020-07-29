@@ -41,6 +41,7 @@ function draw() {
     if (touching == 0) {
       bubbles.push(new Bubble(testBubble.x, testBubble.y, 1));
     }
+  }
 }
 
 function mouseDragged() {
