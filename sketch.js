@@ -1,4 +1,5 @@
 let bubbles = [];
+let aliveBubbles = [];
 let mouse = {
   x: -1,
   y: -1,
@@ -9,29 +10,34 @@ let testBubble = {
   y: -1,
   size: 1
 }
-let maxBubbles = 75;
+let maxBubbles = 100;
+let minBubbleSize = 10;
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
+  noStroke();
 }
 
 function draw() {
-  background(220);
+  //background(220);
   mouse.x = mouseX;
   mouse.y = mouseY;
   //grow any bubble that isn't touching anything
-  for (let i = bubbles.length - 1; i >= 0; i--) {
-    if (!bubbles[i].touchingAny()) {
-      bubbles[i].grow();
+  for (let i = aliveBubbles.length - 1; i >= 0; i--) {
+    if (!aliveBubbles[i].touchingAny()) {
+      aliveBubbles[i].grow();
+      aliveBubbles[i].show();
+    } else {
+      aliveBubbles[i].show();
+      aliveBubbles.splice(i,1);
     }
-    bubbles[i].jitter(3);
-    bubbles[i].show();
+    //bubbles[i].jitter(3);
   }
   //add bubbles if there aren't too many
-  if (bubbles.length < maxBubbles) {
+  if (aliveBubbles.length < maxBubbles) {
     testBubble.x = random(width);
     testBubble.y = random(height);
-    testBubble.size = 1;
+    testBubble.size = minBubbleSize;
     let touching = 0;
     for (let i = bubbles.length - 1; i >= 0; i--) {
       if (bubbles[i].touching(testBubble)) {
@@ -40,19 +46,20 @@ function draw() {
     }
     if (touching == 0) {
       bubbles.push(new Bubble(testBubble.x, testBubble.y, 1));
+      aliveBubbles.push(bubbles[bubbles.length-1])
     }
   }
 }
 
-function mouseDragged() {
-  mouse.x = mouseX;
-  mouse.y = mouseY;
-  for (let i = bubbles.length - 1; i >= 0; i--) {
-    if (bubbles[i].touching(mouse)) {
-      bubbles.splice(i, 1);
-    }
-  }
-}
+// function mouseDragged() {
+//   mouse.x = mouseX;
+//   mouse.y = mouseY;
+//   for (let i = bubbles.length - 1; i >= 0; i--) {
+//     if (bubbles[i].touching(mouse)) {
+//       bubbles.splice(i, 1);
+//     }
+//   }
+// }
 class Bubble {
   constructor(x_, y_, size_) {
     this.x = x_;
