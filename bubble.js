@@ -53,7 +53,7 @@ class Bubble {
     textAlign(CENTER, CENTER);
     textFont("helvetica", this.size / 1.5);
     textStyle(BOLD);
-    if (this.letter == 'N'||this.letter =='Q'||this.letter =='R'||this.letter =='W') {
+    if (this.letter == 'N' || this.letter == 'Q' || this.letter == 'R' || this.letter == 'W') {
       fill(0);
     } else {
       fill(255);

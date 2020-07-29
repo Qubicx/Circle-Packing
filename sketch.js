@@ -34,8 +34,14 @@ function draw() {
     bubbles[i].show();
   }
 }
-
-function mouseDragged() {
+function touchStarted(){
+  popBubbles();
+}
+function touchMoved(){
+  popBubbles();
+  return false;
+}
+function popBubbles() {
   mouse.x = mouseX;
   mouse.y = mouseY;
   for (let i = bubbles.length - 1; i >= 0; i--) {
