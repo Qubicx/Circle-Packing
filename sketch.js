@@ -13,11 +13,11 @@ let maxBubbles = 75;
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
+  noStroke();
 }
 
 function draw() {
   background(220);
-  noStroke();
   mouse.x = mouseX;
   mouse.y = mouseY;
   //grow any bubble that isn't touching anything
