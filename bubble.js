@@ -1,9 +1,10 @@
 class Bubble {
-  constructor(x_, y_, size_) {
+  constructor(x_, y_, letter_, color_, size_) {
     this.x = x_;
     this.y = y_;
     this.size = size_;
-    this.color = color(random(255), random(255), random(255));
+    this.color = color_;
+    this.letter = letter_;
   }
   grow() { //increase the size of a bubble
     this.size++;
@@ -49,5 +50,14 @@ class Bubble {
   show() {
     fill(this.color);
     ellipse(this.x, this.y, this.size);
+    textAlign(CENTER, CENTER);
+    textFont("helvetica", this.size / 1.5);
+    textStyle(BOLD);
+    if (this.letter == 'N'||this.letter =='Q'||this.letter =='R'||this.letter =='W') {
+      fill(0);
+    } else {
+      fill(255);
+    }
+    text(this.letter, this.x, this.y + this.size * 0.04);
   }
 }
