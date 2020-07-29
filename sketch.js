@@ -41,9 +41,6 @@ function draw() {
     if (touching == 0) {
       bubbles.push(new Bubble(testBubble.x, testBubble.y, 1));
     }
-  } else {
-    //    bubbles.splice(random(bubbles.length)-1, 1);
-  }
 }
 
 function mouseDragged() {
@@ -55,14 +52,6 @@ function mouseDragged() {
     }
   }
 }
-
-// function mouseClicked() {
-//   bubbles.push(new Bubble(mouseX, mouseY, 1));
-//   if (bubbles[bubbles.length - 1].touchingAny()) {
-//     bubbles.pop();
-//   }
-// }
-
 class Bubble {
   constructor(x_, y_, size_) {
     this.x = x_;
@@ -74,11 +63,6 @@ class Bubble {
     this.size++;
   }
   touching(other) { //is this bubble touching other
-    // if ((dist(this.x, this.y, other.x, other.y) - this.size / 2 - other.size / 2) < -1 && this != other){
-    //   console.log(this)
-    //   console.log(other)
-    //   console.log((this.x, this.y, other.x, other.y) - this.size / 2 - other.size / 2)
-    // }
     return dist(this.x, this.y, other.x, other.y) - this.size / 2 - other.size / 2 <= 0
   }
   touchingAny() { //is this bubble touching anything
@@ -99,14 +83,11 @@ class Bubble {
     testBubble.size = this.size;
     let touching = false;
     for (let i = 0; i < bubbles.length; i++) {
-      //console.log(bubbles[i].touching(testBubble) && bubbles[i] != this)
       if (bubbles[i].touching(testBubble) && bubbles[i] != this) {
         touching = true;
       }
-      //console.log(touching);
     }
     if (!touching && !(testBubble.x + testBubble.size / 2 >= width || testBubble.x - testBubble.size / 2 <= 0 || testBubble.y + testBubble.size / 2 >= height || testBubble.y - testBubble.size / 2 <= 0)) {
-      //console.log("moving" + str(touching));
       this.x = testBubble.x;
       this.y = testBubble.y;
       this.size = testBubble.size;
