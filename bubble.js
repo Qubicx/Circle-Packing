@@ -1,7 +1,6 @@
 class Bubble {
   constructor(x_, y_, size_) {
-    this.x = x_;
-    this.y = y_;
+    this.pos = createVector(x_,y_)
     this.size = size_;
     this.color = color(random(255), random(255), random(255));
   }
@@ -9,10 +8,10 @@ class Bubble {
     this.size++;
   }
   touching(other) { //is this bubble touching other
-    return dist(this.x, this.y, other.x, other.y) - this.size / 2 - other.size / 2 <= 0
+    return this.pos.dist(other.pos) - this.size / 2 - other.size / 2 <= 0
   }
   touchingAny() { //is this bubble touching anything
-    if (this.x + this.size / 2 >= width || this.x - this.size / 2 <= 0 || this.y + this.size / 2 >= height || this.y - this.size / 2 <= 0) {
+    if (this.pos.x + this.size / 2 >= width || this.pos.x - this.size / 2 <= 0 || this.pos.y + this.size / 2 >= height || this.pos.y - this.size / 2 <= 0) {
       return true;
     } else {
       for (let i = 0; i < bubbles.length; i++) {
@@ -48,6 +47,6 @@ class Bubble {
   }
   show() {
     fill(this.color);
-    ellipse(this.x, this.y, this.size);
+    ellipse(this.pos.x, this.pos.y, this.size);
   }
 }
