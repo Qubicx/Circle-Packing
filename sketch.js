@@ -5,7 +5,7 @@ let mouse = {
 let testBubble = {
   size: 1
 }
-let maxBubbles = 2;
+let maxBubbles = 75;
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
