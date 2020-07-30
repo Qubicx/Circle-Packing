@@ -21,6 +21,7 @@ function draw() {
     if (!bubbles[i].touchingAny()) {
       bubbles[i].grow();
     }
+    bubbles[i].jitter(3);
     bubbles[i].show();
   }
   //add bubbles if there aren't too many

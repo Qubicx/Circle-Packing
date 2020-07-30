@@ -23,8 +23,9 @@ class Bubble {
     }
   }
   jitter(amount = 3) {
-    testBubble.x = this.x + random(-amount, amount);
-    testBubble.y = this.y + random(-amount, amount);
+    testBubble.pos.set(this.pos);
+    let movement = createVector(random(-amount,amount),random(-amount,amount))
+    testBubble.pos.add(movement);
     testBubble.size = this.size;
     let touching = false;
     for (let i = 0; i < bubbles.length; i++) {
@@ -32,9 +33,8 @@ class Bubble {
         touching = true;
       }
     }
-    if (!touching && !(testBubble.x + testBubble.size / 2 >= width || testBubble.x - testBubble.size / 2 <= 0 || testBubble.y + testBubble.size / 2 >= height || testBubble.y - testBubble.size / 2 <= 0)) {
-      this.x = testBubble.x;
-      this.y = testBubble.y;
+    if (!touching && !(testBubble.pos.x + testBubble.size / 2 >= width || testBubble.pos.x - testBubble.size / 2 <= 0 || testBubble.pos.y + testBubble.size / 2 >= height || testBubble.pos.y - testBubble.size / 2 <= 0)) {
+      this.pos.set(testBubble.pos);
       this.size = testBubble.size;
     }
   }
