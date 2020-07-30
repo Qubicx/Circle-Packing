@@ -45,7 +45,7 @@ function draw() {
   }
 }
 
-function mouseDragged() {
+function popBubbles() {
   mouse.x = mouseX;
   mouse.y = mouseY;
   for (let i = bubbles.length - 1; i >= 0; i--) {
@@ -53,4 +53,13 @@ function mouseDragged() {
       bubbles.splice(i, 1);
     }
   }
+}
+
+function touchStarted() {
+  popBubbles();
+}
+
+function touchMoved() {
+  popBubbles();
+  return false;
 }
